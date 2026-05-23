@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A1A2E"
+    android:fillViewport="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.15"
+        android:paddingBottom="8dp"
+        android:text="AMRDV CONTROLLER"
+        android:textColor="#2196F3"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- GPS & Heading info -->
+    <TextView
+        android:id="@+id/tvGps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GPS: waiting..."
+        android:textColor="#66BB6A"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:paddingBottom="2dp"/>
+
+    <TextView
+        android:id="@+id/tvHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Heading: --"
+        android:textColor="#FFD600"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:paddingBottom="8dp"/>
+
+    <!-- Lock Heading button -->
+    <Button
+        android:id="@+id/btnLockHeading"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="🧭 Lock Heading &amp; Start"
+        android:textSize="13sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1565C0"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Refresh devices -->
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Refresh Devices"
+        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#37474F"
+        android:layout_marginBottom="6dp"/>
+
+    <!-- Bluetooth Connection Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <Spinner
+            android:id="@+id/spinnerDevices"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="#16213E"
+            android:popupBackground="#16213E"/>
+
+        <Button
+            android:id="@+id/btnConnect"
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:text="Connect"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2196F3"
+            android:textSize="13sp"/>
+    </LinearLayout>
+
+    <!-- Status -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Disconnected"
+        android:textColor="#888888"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:paddingBottom="10dp"/>
+
+    <!-- 1D Path Map label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1D MOVEMENT MAP  (scroll to pan · auto-follows after 3s)"
+        android:textColor="#555577"
+        android:textSize="11sp"
+        android:letterSpacing="0.1"
+        android:paddingBottom="4dp"/>
+
+    <!-- 1D Path Map -->
+    <view
+        class="com.example.arduinocontroller.MainActivity$PathView"
+        android:id="@+id/pathView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="#16213E"/>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#222244"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp"/>
+
+    <!-- World Map label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WORLD MAP  (lock heading first to enable tracking)"
+        android:textColor="#555577"
+        android:textSize="11sp"
+        android:letterSpacing="0.1"
+        android:paddingBottom="4dp"/>
+
+    <!-- OSMDroid Map -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="#16213E"/>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#222244"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Odometry Data -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:id="@+id/tvDisplacement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Displacement: 0.00 cm"
+            android:textColor="#90CAF9"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/tvDistance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total Distance: 0.00 cm"
+            android:textColor="#90CAF9"
+            android:textSize="13sp"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <!-- Metal Detection Alert -->
+    <TextView
+        android:id="@+id/tvMetal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⚠ METAL DETECTED"
+        android:textColor="#FF5722"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:visibility="gone"/>
+
+    <!-- Controls label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CONTROLS  (hold to move)"
+        android:textColor="#555577"
+        android:textSize="11sp"
+        android:letterSpacing="0.2"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btnForward"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="▲  FORWARD"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1565C0"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:text="↺  RESET ALL"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#B71C1C"/>
+
+    <Button
+        android:id="@+id/btnBackward"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="▼  BACKWARD"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1565C0"
+        android:layout_marginBottom="8dp"/>
+
+</LinearLayout>
+</ScrollView>
